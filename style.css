@@ -396,18 +396,21 @@ html[lang="en"] .review-text{
 .nav-home:hover{ opacity:1; }
 
 .landing-hero{
-  min-height:100vh;
-  position:relative;
-  background-image:url("assets/baba.jpeg");
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position: center center;
+  min-height: 100vh;
+  position: relative;
+
+  background-image: url("assets/her1.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center 10%;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:90px 18px 40px;
+
+  padding: 90px 18px 40px;
   text-align:center;
-  color:#fff;
+  color: #fff;
 }
 
 .landing-location a{
@@ -445,7 +448,7 @@ html[lang="en"] .review-text{
 
 .landing-phone{
   margin:8px 0 4px;
-  font-size:18px;
+  font-size:22px;
   font-weight:900;
   letter-spacing:1px;
   color:rgba(255,255,255,.9);
@@ -455,6 +458,7 @@ html[lang="en"] .review-text{
 .landing-phone::before{ content:" ☎ "; opacity:.85; }
 
 .landing-location{
+  font-size: 20px;
   display:flex;
   justify-content:center;
   margin-top:6px;
@@ -476,7 +480,7 @@ html[lang="en"] .review-text{
 }
 
 .glass{
-  margin-top:-30px;
+  margin-top:120px;
   position:relative;
   z-index:2;
   width:min(980px, 100%);
@@ -489,17 +493,17 @@ html[lang="en"] .review-text{
 }
 
 .landing-title{
-  margin:0;
-  font-size:45px;
-  font-weight:900;
-  color:#fff;
+  margin: 0;
+  font-size: 52px;
+  font-weight: 900;
+  color: #fff;
 }
 
 .landing-subtitle{
-  margin:12px 0 0;
-  font-size:18px;
-  font-weight:700;
-  color:rgba(255,255,255,.86);
+  margin: 12px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255,255,255,.86);
 }
 
 .landing-actions{
@@ -730,4 +734,98 @@ html[lang="en"] .review-text{
 
   .title.small{ font-size:20px; }
   .question{ font-size:16px; }
+}
+
+/* =========================
+   HERO LOGO (top center)
+========================= */
+.hero-logo {
+  position: absolute;
+  top: 24px;              /* distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;            /* above overlay */
+  pointer-events: auto;
+}
+
+.hero-logo img {
+  height: 200px;           /* desktop size - increased */
+  width: auto;
+  display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-logo {
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* make the logo slightly smaller on most phones */
+  .hero-logo img {
+    height: 140px; /* bigger logo on phones */
+  }
+}
+
+/* Mobile logo spacing & compact phone number */
+@media (max-width: 768px) {
+  /* increase reserved space so there's clear gap below the logo */
+  .landing-hero{
+    padding-top: 320px; /* more space for larger centered logo */
+  }
+
+  /* add slightly larger top margin to the glass card for breathing room */
+  .glass{ margin-top:96px; }
+
+  .landing-phone{
+    font-size:22px; /* slightly smaller so numbers fit on one line */
+    white-space:nowrap;
+    display:inline-block;
+  }
+}
+
+@media (max-width: 380px){
+  /* extra spacing for very small screens */
+  .landing-hero{ padding-top:300px; }
+  /* slightly smaller logo on the very smallest screens to avoid overflow */
+  .hero-logo img { height: 170px; }
+  .landing-phone{ font-size:14px; }
+}
+
+/* =========================
+   Mobile responsive improvements
+   - fluid type and images
+   - stacked actions and full-width buttons on small screens
+ ======================== */
+
+html{
+  font-size: clamp(14px, 1.8vw, 18px);
+}
+
+img, svg, picture {
+  max-width:100%;
+  height:auto;
+  display:block;
+}
+
+/* make landing hero padding and glass more fluid */
+.landing-hero{
+  padding: clamp(28px, 8vh, 90px) 18px 40px;
+  background-position: center top 35%;
+}
+
+.glass{ width: min(980px, 100%); padding: clamp(18px, 3.5vw, 28px); }
+
+/* stack landing actions into full-width buttons on narrow screens */
+@media (max-width: 520px){
+  .landing-actions{ display:flex; flex-direction:column; gap:12px; align-items:center; }
+  .landing-btn{ min-width:unset; width:100%; padding:12px 16px; box-shadow:none; }
+  .landing-title{ font-size:clamp(26px, 8vw, 40px); }
+}
+
+/* ensure touch targets are large enough on very small screens */
+@media (max-width: 380px){
+  .landing-btn{ padding:11px 14px; font-size:15px; }
+  .hero-logo img{ height:140px; }
 }
